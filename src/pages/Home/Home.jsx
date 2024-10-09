@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [brandFilter, setBrandFilter] = useState('');
+    const [crimeFilter, setCrimeFilter] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
@@ -18,14 +18,14 @@ const Home = () => {
     const [showPriceRange, setShowPriceRange] = useState(false); // Control visibility of price range input fields
 
     const { data: informations = [], isLoading, refetch } = useQuery({
-        queryKey: ['informations', searchTerm, brandFilter, categoryFilter, minPrice, maxPrice, sortPrice, sortDate],
+        queryKey: ['informations', searchTerm, crimeFilter, categoryFilter, minPrice, maxPrice, sortPrice, sortDate],
         queryFn: async () => {
             const { data } = await axios.get('http://localhost:3000/informations', {
             // const { data } = await axios.get('http://localhost:3000/products', {
             // const { data } = await axios.get('https://natural-agro-server.vercel.app/products', {
                 params: {
                     search: searchTerm,
-                    brandFilter: brandFilter,
+                    crimeFilter: crimeFilter,
                     categoryFilter: categoryFilter,
                     minPrice: minPrice,
                     maxPrice: maxPrice,
@@ -38,7 +38,7 @@ const Home = () => {
     });
 
     const handleSearch = (e) => setSearchTerm(e.target.value);
-    const handleBrandFilter = (e) => { setBrandFilter(e.target.value); refetch(); };
+    const handleCrimeFilter = (e) => { setCrimeFilter(e.target.value); refetch(); };
     const handleCategoryFilter = (e) => { setCategoryFilter(e.target.value); refetch(); };
     const handleSortPrice = (e) => { setSortPrice(e.target.value); refetch(); };
     const handleSortDate = (e) => { setSortDate(e.target.value); refetch(); };
@@ -64,20 +64,63 @@ const Home = () => {
                 <div className='flex justify-between items-center mb-4'>
                     <input
                         type='text'
-                        placeholder='Search by product name'
+                        placeholder='অপরাধীর নাম দিয়ে খুজুন'
                         className='input input-bordered w-full max-w-xs'
                         value={searchTerm}
                         onChange={handleSearch}
                     />
 
-                    <select className='select select-bordered' value={brandFilter} onChange={handleBrandFilter}>
-                        <option value=''>Brand Name</option>
-                        <option value=''>All Brand</option>
-                        <option value='ACI'>ACI</option>
-                        <option value='ACME'>ACME</option>
-                        <option value='Akij'>Akij</option>
-                        <option value='Square'>Square</option>
-                        <option value='Faizan'>Faizan</option>
+                    <select className='select select-bordered' value={crimeFilter} onChange={handleCrimeFilter}>
+                        <option value="">অপরাধের ধরন</option>
+                        <option value="">সকল ধরনের অপরাধ</option>
+                        <option value="রাষ্ট্রদ্রোহ/ রাষ্ট্র বিরোধী কার্যক্রম">রাষ্ট্রদ্রোহিতা/ রাষ্ট্র বিরোধী কার্যক্রম / রাষ্ট্রদ্রোহীকে সমর্থন </option>
+                        <option value="স্বৈরাচার/ স্বৈরাচারকে সমর্থন">স্বৈরাচার/ স্বৈরাচারকে সমর্থন</option>
+                        <option value="ধর্মবিদ্বেষ">ধর্মবিদ্বেষ/ ধর্মীয় উস্কানি/ ধর্ম অবমাননা</option>
+                        <option value="সাম্প্রদায়িক উস্কানি">সাম্প্রদায়িক বিদ্বেষ/ সাম্প্রদায়িক উস্কানি</option>
+                        <option value="সন্ত্রাস">সন্ত্রাস</option>
+                        <option value="চাঁদাবাজি">চাঁদাবাজি</option>
+                        <option value="ইভটিজিং">ইভটিজিং</option>
+                        <option value="শিশু নির্যাতন">শিশু নির্যাতন</option>
+                        <option value="নারী নির্যাতন">নারী নির্যাতন</option>
+                        <option value="পুরুষ নির্যাতন">পুরুষ নির্যাতন</option>
+                        <option value="যৌন নির্যাতন">যৌন নির্যাতন</option> 
+                        <option value="ধর্ষণ">ধর্ষণ</option>
+                        <option value="বলাৎকার">বলাৎকার</option>
+                        <option value="মানবপাচার">মানবপাচার</option>
+                        <option value="অপহরণ">অপহরণ</option>
+                        <option value="গুম/ নিখোঁজ">গুম/ নিখোঁজ</option>
+                        <option value="শারীরিক নির্যাতন">শারীরিক নির্যাতন</option>
+                        <option value="মানসিক নির্যাতন">মানসিক নির্যাতন</option>
+                        <option value="ভাংচুর/ সম্পত্তি ধ্বংস">ভাংচুর/ সম্পত্তি ধ্বংস</option>
+                        <option value="হত্যা">হত্যা</option>
+                        <option value="ডাকাতি/ লুটপাট">ডাকাতি/ লুটপাট</option>
+                        <option value="ছিনতাই">ছিনতাই</option>
+                        <option value="চুরি">চুরি</option>
+                        <option value="কর্ম ফাঁকি">কর্মে অবহেলা/ কর্ম ফাঁকি</option>
+                        <option value="ঘুষ">ঘুষ</option>
+                        <option value="মানি লন্ডারিং">মানি লন্ডারিং</option>
+                        <option value="কর ফাঁকি">কর ফাঁকি</option>
+                        <option value="প্রতারণা">প্রতারণা</option>
+                        <option value="জাল মুদ্রা সরবরাহ">জাল মুদ্রা তৈরি/ সরবরাহ</option>
+                        <option value="জাল সার্টিফিকেট সরবরাহ">জাল সার্টিফিকেট তৈরি</option>
+                        <option value="বিপণন প্রতারণা">বিপণন প্রতারণা</option>
+                        <option value="পণ্যে ভেজাল দেওয়া">পণ্যে ভেজাল দেওয়া</option>
+                        <option value="জালিয়াতি">জালিয়াতি</option>
+                        <option value="আত্মসাৎ">আত্মসাৎ</option>
+                        <option value="দুর্নীতি">দুর্নীতি</option>
+                        <option value="মাদক পাচার">মাদক পাচার</option>
+                        <option value="মাদক ব্যবসা">মাদক ব্যবসা</option>
+                        <option value="নেশা/মাদক সেবন">নেশা/মাদক সেবন</option>
+                        <option value="জুয়া">জুয়া</option>
+                        <option value="পতিতাব্যবসা">পতিতাবৃত্তি/ পতিতাব্যবসা</option>
+                        <option value="বন উজাড় করা">অবৈধভাবে বন উজাড় করা</option>
+                        <option value="অবৈধ শিকার">অবৈধ শিকার</option>
+                        <option value="পরিবেশ দূষণ">পরিবেশ দূষণ</option>
+                        <option value="শব্দ দূষণ">শব্দ দূষণ</option>
+                        <option value="বন্যপ্রাণী পাচার">বন্যপ্রাণী পাচার</option>
+                        <option value="মিথ্যা তথ্য ছড়ানো">গুজব/ মিথ্যা তথ্য ছড়ানো</option>
+                        <option value="ডিজিটাল ক্রাইম">ডিজিটাল ক্রাইম</option>
+                        <option value="অন্যান্য">অন্যান্য</option>
                     </select>
 
                     <select className='select select-bordered' value={categoryFilter} onChange={handleCategoryFilter}>

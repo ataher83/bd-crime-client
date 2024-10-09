@@ -518,9 +518,6 @@ const AddInfo = () => {
 
                     <input type="submit" value="জমা দিন" className="btn btn-block btn-error text-xl" />
 
-                    {/* <button type="submit" disabled={loading}>
-                    {loading ? 'Saving...' : 'Save Information'}
-                    </button> */}
                 </form>
 
 
