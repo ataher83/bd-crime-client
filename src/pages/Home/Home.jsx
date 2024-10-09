@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [crimeFilter, setCrimeFilter] = useState('');
-    const [categoryFilter, setCategoryFilter] = useState('');
+    const [professionFilter, setProfessionFilter] = useState('');
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [sortPrice, setSortPrice] = useState('');
@@ -18,7 +18,7 @@ const Home = () => {
     const [showPriceRange, setShowPriceRange] = useState(false); // Control visibility of price range input fields
 
     const { data: informations = [], isLoading, refetch } = useQuery({
-        queryKey: ['informations', searchTerm, crimeFilter, categoryFilter, minPrice, maxPrice, sortPrice, sortDate],
+        queryKey: ['informations', searchTerm, crimeFilter, professionFilter, minPrice, maxPrice, sortPrice, sortDate],
         queryFn: async () => {
             const { data } = await axios.get('http://localhost:3000/informations', {
             // const { data } = await axios.get('http://localhost:3000/products', {
@@ -26,7 +26,7 @@ const Home = () => {
                 params: {
                     search: searchTerm,
                     crimeFilter: crimeFilter,
-                    categoryFilter: categoryFilter,
+                    professionFilter: professionFilter,
                     minPrice: minPrice,
                     maxPrice: maxPrice,
                     sortPrice: sortPrice,
@@ -39,7 +39,7 @@ const Home = () => {
 
     const handleSearch = (e) => setSearchTerm(e.target.value);
     const handleCrimeFilter = (e) => { setCrimeFilter(e.target.value); refetch(); };
-    const handleCategoryFilter = (e) => { setCategoryFilter(e.target.value); refetch(); };
+    const handleProfessionFilter = (e) => { setProfessionFilter(e.target.value); refetch(); };
     const handleSortPrice = (e) => { setSortPrice(e.target.value); refetch(); };
     const handleSortDate = (e) => { setSortDate(e.target.value); refetch(); };
     const handlePriceRangeClick = () => setShowPriceRange(!showPriceRange);
@@ -71,7 +71,7 @@ const Home = () => {
                     />
 
                     <select className='select select-bordered' value={crimeFilter} onChange={handleCrimeFilter}>
-                        <option value="">অপরাধের ধরন</option>
+                        <option value="">- অপরাধের ধরন -</option>
                         <option value="">সকল ধরনের অপরাধ</option>
                         <option value="রাষ্ট্রদ্রোহ/ রাষ্ট্র বিরোধী কার্যক্রম">রাষ্ট্রদ্রোহিতা/ রাষ্ট্র বিরোধী কার্যক্রম / রাষ্ট্রদ্রোহীকে সমর্থন </option>
                         <option value="স্বৈরাচার/ স্বৈরাচারকে সমর্থন">স্বৈরাচার/ স্বৈরাচারকে সমর্থন</option>
@@ -123,19 +123,46 @@ const Home = () => {
                         <option value="অন্যান্য">অন্যান্য</option>
                     </select>
 
-                    <select className='select select-bordered' value={categoryFilter} onChange={handleCategoryFilter}>
-                        <option value=''>Category</option>
-                        <option value=''>All Category</option>
-                        <option value='Drinks'>Drinks</option>
-                        <option value='Juice'>Juice</option>
-                        <option value='Honey'>Honey</option>
-                        <option value='Dairy'>Dairy</option>
-                        <option value='Rice'>Rice</option>
-                        <option value='Oil'>Oil</option>
-                        <option value='Meat'>Meat</option>
-                        <option value='Fish'>Fish</option>
-                        <option value='Vegetable'>Vegetable</option>
-                        <option value='Fruits'>Fruits</option>
+                    <select className='select select-bordered' value={professionFilter} onChange={handleProfessionFilter}> 
+                        <option value=''>- পেশা -</option>
+                        <option value=''>সকল পেশা</option>
+                        <option value='রাজনীতিবিদ'>রাজনীতিবিদ</option>
+                        <option value='ডাক্তার'>ডাক্তার</option>
+                        <option value='ইঞ্জিনিয়ার'>ইঞ্জিনিয়ার</option>
+                        <option value='শিক্ষক'>শিক্ষক</option>
+                        <option value='আইনজীবী'>আইনজীবী</option>
+                        <option value='কৃষক'>কৃষক</option>
+                        <option value='ব্যবসায়ী'>ব্যবসায়ী</option>
+                        <option value='শিল্পী'>শিল্পী</option>
+                        <option value='বিজ্ঞানী'>বিজ্ঞানী</option>
+                        <option value='সাংবাদিক'>সাংবাদিক</option>
+                        <option value='লেখক'>লেখক</option>
+                        <option value='পুলিশ অফিসার'>পুলিশ অফিসার</option>
+                        <option value='সফটওয়্যার ডেভেলপার'>সফটওয়্যার ডেভেলপার</option>
+                        <option value='নার্স'>নার্স</option>
+                        <option value='স্থপতি'>স্থপতি</option>
+                        <option value='রাঁধুনি'>রাঁধুনি</option>
+                        <option value='অভিনেতা'>অভিনেতা</option>
+                        <option value='গায়ক'>গায়ক</option>
+                        <option value='ফটোগ্রাফার'>ফটোগ্রাফার</option>
+                        <option value='হিসাবরক্ষক'>হিসাবরক্ষক</option>
+                        <option value='পাইলট'>পাইলট</option>
+                        <option value='ড্রাইভার'>ড্রাইভার</option>
+                        <option value='কাঠমিস্ত্রি'>কাঠমিস্ত্রি</option>
+                        <option value='ইলেকট্রিশিয়ান'>ইলেকট্রিশিয়ান</option>
+                        <option value='মিস্ত্রি'>মিস্ত্রি</option>
+                        <option value='প্লাম্বার'>প্লাম্বার</option>
+                        <option value='দর্জি'>দর্জি</option>
+                        <option value='মালি'>মালি</option>
+                        <option value='জেলে'>জেলে</option>
+                        <option value='গ্রন্থাগারিক'>গ্রন্থাগারিক</option>
+                        <option value='নিরাপত্তা রক্ষী'>নিরাপত্তা রক্ষী</option>
+                        <option value='অধ্যাপক'>অধ্যাপক</option>
+                        <option value='গবেষক'>গবেষক</option>
+                        <option value='ব্যাংকার'>ব্যাংকার</option>
+                        <option value='প্রশাসনিক কর্মকর্তা'>প্রশাসনিক কর্মকর্তা</option>
+                        <option value='নৃত্যশিল্পী'>নৃত্যশিল্পী</option>
+                        <option value='অন্যান্য'>অন্যান্য</option>
                     </select>
 
                     <div className="relative">
