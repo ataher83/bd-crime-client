@@ -61,7 +61,8 @@ const Home = () => {
                     </Slide>
                 </p>
 
-                <div className='flex justify-between items-center mb-4'>
+                <div className='flex flex-col lg:flex-row justify-between items-center mb-4'>
+
                     <input
                         type='text'
                         placeholder='অপরাধীর নাম দিয়ে খুজুন'
@@ -70,7 +71,7 @@ const Home = () => {
                         onChange={handleSearch}
                     />
 
-                    <select className='select select-bordered' value={crimeFilter} onChange={handleCrimeFilter}>
+                    <select className='select select-bordered max-w-xs' value={crimeFilter} onChange={handleCrimeFilter}>
                         <option value="">- অপরাধের ধরন -</option>
                         <option value="">সকল ধরনের অপরাধ</option>
                         <option value="রাষ্ট্রদ্রোহ/ রাষ্ট্র বিরোধী কার্যক্রম">রাষ্ট্রদ্রোহিতা/ রাষ্ট্র বিরোধী কার্যক্রম / রাষ্ট্রদ্রোহীকে সমর্থন </option>
@@ -123,7 +124,7 @@ const Home = () => {
                         <option value="অন্যান্য">অন্যান্য</option>
                     </select>
 
-                    <select className='select select-bordered' value={professionFilter} onChange={handleProfessionFilter}> 
+                    <select className='select select-bordered w-full max-w-40' value={professionFilter} onChange={handleProfessionFilter}> 
                         <option value=''>- পেশা -</option>
                         <option value=''>সকল পেশা</option>
                         <option value='রাজনীতিবিদ'>রাজনীতিবিদ</option>
@@ -165,8 +166,8 @@ const Home = () => {
                         <option value='অন্যান্য'>অন্যান্য</option>
                     </select>
 
-                    <div className="relative">
-                        <button className='btn btn-outline' onClick={handlePriceRangeClick}>
+                    <div className="relative w-full max-w-40">
+                        <button className='btn btn-outline w-full' onClick={handlePriceRangeClick}>
                             {/* Price Range */}
                             বয়স সীমা
                         </button>
@@ -196,22 +197,12 @@ const Home = () => {
                         )}
                     </div>
 
-                    {/* <select className='select select-bordered' value={sortPrice} onChange={handleSortPrice}>
-                        <option value=''>Sort by Price</option>
-                        <option value='asc'>Low to High</option>
-                        <option value='desc'>High to Low</option>
-                    </select> */}
-
                     <select className='select select-bordered' value={sortPrice} onChange={handleSortPrice}>
                         <option value=''>বয়স অনুযায়ী দেখুন</option>
                         <option value='asc'>কম থেকে বেশী</option>
                         <option value='desc'>বেশী থেকে কম</option>
                     </select>
 
-                    {/* <select className='select select-bordered' value={sortDate} onChange={handleSortDate}>
-                        <option value='newest'>Newest First</option>
-                        <option value='oldest'>Oldest First</option>
-                    </select> */}
                     <select className='select select-bordered' value={sortDate} onChange={handleSortDate}>
                         <option value='newest'>নতুনগুলো প্রথমে</option>
                         <option value='oldest'>পুরানো গুলো প্রথমে</option>
