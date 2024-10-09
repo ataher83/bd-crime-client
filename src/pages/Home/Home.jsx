@@ -75,7 +75,7 @@ const Home = () => {
                         <option value="">সকল ধরনের অপরাধ</option>
                         <option value="রাষ্ট্রদ্রোহ/ রাষ্ট্র বিরোধী কার্যক্রম">রাষ্ট্রদ্রোহিতা/ রাষ্ট্র বিরোধী কার্যক্রম / রাষ্ট্রদ্রোহীকে সমর্থন </option>
                         <option value="স্বৈরাচার/ স্বৈরাচারকে সমর্থন">স্বৈরাচার/ স্বৈরাচারকে সমর্থন</option>
-                        <option value="ধর্মবিদ্বেষ">ধর্মবিদ্বেষ/ ধর্মীয় উস্কানি/ ধর্ম অবমাননা</option>
+                        <option value="ধর্মবিদ্বেষ/ ধর্ম অবমাননা">ধর্মবিদ্বেষ/ ধর্মীয় উস্কানি/ ধর্ম অবমাননা</option>
                         <option value="সাম্প্রদায়িক উস্কানি">সাম্প্রদায়িক বিদ্বেষ/ সাম্প্রদায়িক উস্কানি</option>
                         <option value="সন্ত্রাস">সন্ত্রাস</option>
                         <option value="চাঁদাবাজি">চাঁদাবাজি</option>
@@ -167,40 +167,54 @@ const Home = () => {
 
                     <div className="relative">
                         <button className='btn btn-outline' onClick={handlePriceRangeClick}>
-                            Price Range
+                            {/* Price Range */}
+                            বয়স সীমা
                         </button>
                         {showPriceRange && (
                             <div className=" absolute top-full left-0 mt-2 bg-white p-4 rounded shadow-lg z-10">
                                 <input
                                     type='number'
-                                    placeholder='Min Price'
+                                    // placeholder='Min Price'
+                                    placeholder='সর্বনিম্ন'
                                     className='input input-bordered w-full mb-2'
                                     value={minPrice}
                                     onChange={(e) => setMinPrice(e.target.value)}
                                 />
                                 <input
                                     type='number'
-                                    placeholder='Max Price'
+                                    // placeholder='Max Price'
+                                    placeholder='সর্বোচ্চ'
                                     className='input input-bordered w-full mb-2'
                                     value={maxPrice}
                                     onChange={(e) => setMaxPrice(e.target.value)}
                                 />
                                 <button className='btn btn-success w-full' onClick={handleFindClick}>
-                                    Find
+                                    {/* Find */}
+                                    খুঁজ
                                 </button>
                             </div>
                         )}
                     </div>
 
-                    <select className='select select-bordered' value={sortPrice} onChange={handleSortPrice}>
+                    {/* <select className='select select-bordered' value={sortPrice} onChange={handleSortPrice}>
                         <option value=''>Sort by Price</option>
                         <option value='asc'>Low to High</option>
                         <option value='desc'>High to Low</option>
+                    </select> */}
+
+                    <select className='select select-bordered' value={sortPrice} onChange={handleSortPrice}>
+                        <option value=''>বয়স অনুযায়ী দেখুন</option>
+                        <option value='asc'>কম থেকে বেশী</option>
+                        <option value='desc'>বেশী থেকে কম</option>
                     </select>
 
-                    <select className='select select-bordered' value={sortDate} onChange={handleSortDate}>
+                    {/* <select className='select select-bordered' value={sortDate} onChange={handleSortDate}>
                         <option value='newest'>Newest First</option>
                         <option value='oldest'>Oldest First</option>
+                    </select> */}
+                    <select className='select select-bordered' value={sortDate} onChange={handleSortDate}>
+                        <option value='newest'>নতুনগুলো প্রথমে</option>
+                        <option value='oldest'>পুরানো গুলো প্রথমে</option>
                     </select>
                 </div>
 
@@ -233,7 +247,7 @@ const Home = () => {
 
                                     <div className="text-center mt-5">
                                         <Link to={`/crimeDetails/${info._id}`}>
-                                            <button className="btn btn-success text-s w-1/3">View Details</button>
+                                            <button className="btn btn-success text-s w-1/3">বিস্তারিত দেখুন</button>
                                         </Link>
                                     </div>
                                 </div>
